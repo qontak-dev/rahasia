@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'rails/generators'
 require 'rails/generators/rails/model/model_generator'
 require 'rails/generators/active_record/migration/migration_generator'
 
@@ -23,6 +24,7 @@ module Rahasia
       end
 
       def migration_version
+        return if ActiveRecord::VERSION::MAJOR == 4
         "[#{ActiveRecord::VERSION::MAJOR}.#{ActiveRecord::VERSION::MINOR}]"
       end
     end

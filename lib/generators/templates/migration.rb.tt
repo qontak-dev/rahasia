@@ -1,4 +1,4 @@
-class <%= migration_class_name %><%= table_name.camelize %> < ActiveRecord::Migration<%= migration_version %>
+class <%= migration_class_name %> < ActiveRecord::Migration<%= migration_version %>
   def change<% attributes_names.each do |t| %>
     add_column :<%=table_name%>, :<%= t %>, :string
     add_column :<%=table_name%>, :<%= t %>_encrpyted, :string<% end %>
