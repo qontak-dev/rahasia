@@ -60,10 +60,10 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/qontak
 
 TODO:
 
-[] Create Travis for Rails 4, 5, 6
-[] Create Travis for Ruby 2.1.0, 2.2.0, 2.3.8, 2.4.5, 2.5.3, 2.6.2
-[] Create test for generate installer
-[] Create test for generate migration
+- [ ] Create Travis for Rails 4, 5, 6
+- [ ] Create Travis for Ruby 2.1.0, 2.2.0, 2.3.8, 2.4.5, 2.5.3, 2.6.2
+- [ ] Create test for generate installer
+- [ ] Create test for generate migration
 
 ## License
 
