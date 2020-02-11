@@ -24,7 +24,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Install Library Rahasia using Rails generator
+
+```
+rails generate rahasia:install
+```
+
+Create Migration to add encrypted_column
+
+```
+rails generate rahasia:migration credentials refresh_token access_token
+```
+
+Run Migration on Rails
+
+```
+bundle exec rake db:migrate
+```
+
+or for Rails 5 above
+
+```
+bundle exec rails db:migrate
+```
 
 ## Development
 

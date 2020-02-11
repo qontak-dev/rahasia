@@ -25,6 +25,7 @@ module Rahasia
 
       def migration_version
         return if ActiveRecord::VERSION::MAJOR == 4
+
         "[#{ActiveRecord::VERSION::MAJOR}.#{ActiveRecord::VERSION::MINOR}]"
       end
     end

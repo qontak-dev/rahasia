@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+Rahasia.setup do |config|
+  config.master_key = 'please-change-me-at-config-initializers-rahasia' # SecureRandom.hex(32)
+  config.adapter = 'lockbox' # available ['vault','lockbox']
+  config.vault = {host: 'http://localhost', token: 'token'}
+end
