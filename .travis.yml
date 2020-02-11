@@ -4,9 +4,9 @@ cache:
   directories:
     - /home/travis/.rvm/
 rvm:
-  - 2.4.9
-  - 2.5.1
-  - 2.6.2
+  - 2.3.8
+  - 2.4.5
+  - 2.5.3
 script:
   - gem install bundler
   - bundle install
