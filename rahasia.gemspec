@@ -29,13 +29,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.3'
-  spec.add_dependency 'activesupport', '>= 4'
+  spec.required_ruby_version = '>= 2.3.8'
+  spec.add_dependency 'activesupport', '~> 4'
   spec.add_dependency 'lockbox', '~> 0.3.1'
   spec.add_dependency 'vault', '~> 0.13.0'
 
-  spec.add_development_dependency 'appraisal'
-  spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'rails', '~> 4.2.10'
+  spec.add_development_dependency 'bundler', '< 2'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   # spec.add_development_dependency 'rubocop', '~> 0.79.0'
