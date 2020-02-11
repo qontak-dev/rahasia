@@ -15,13 +15,31 @@ module Rahasia
 
   # Masterkey
   mattr_accessor :master_key
-  @@master_key = nil
+  def self.master_key=(master_key)
+    @master_key = master_key
+  end
+
+  def self.master_key
+    @master_key
+  end
 
   # Adapter
   mattr_accessor :adapter
-  @@adapter = nil
+  def self.adapter=(adapter)
+    @adapter = adapter
+  end
+
+  def self.adapter
+    @adapter
+  end
 
   # Vault Setting
   mattr_accessor :vault
-  @@vault = nil
+  def self.vault=(vault)
+    @vault = vault
+  end
+
+  def self.vault
+    @vault
+  end
 end
