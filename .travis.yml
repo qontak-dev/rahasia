@@ -8,6 +8,6 @@ rvm:
   - 2.5.3
 script:
   - gem install bundler -v '< 2'
-  - bundle exec rspec
+  - bundle install
 gemfile:
   - gemfiles/rails_4.gemfile
