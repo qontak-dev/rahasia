@@ -1,11 +1,13 @@
 os: linux
 language: ruby
 before_install:
-  - gem install bundler
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v '< 2'
 cache:
   directories:
     - /home/travis/.rvm/
 rvm:
+  - 2.4.8
   - 2.5.3
 script:
   - bundle exec rspec
