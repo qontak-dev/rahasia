@@ -9,5 +9,19 @@ require 'generators/rahasia/migration_generator'
 
 # Wrapper for encrypt and keep our credentials secret
 module Rahasia
-  # Your code goes here...
+  def self.setup
+    yield self
+  end
+
+  # Masterkey
+  mattr_accessor :master_key
+  @@master_key = nil
+
+  # Adapter
+  mattr_accessor :adapter
+  @@adapter = nil
+
+  # Vault Setting
+  mattr_accessor :vault
+  @@vault = nil
 end

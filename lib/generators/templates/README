@@ -1,0 +1,17 @@
+===============================================================================
+
+Depending on your application's configuration some manual setup may be required:
+
+  1. Ensure you have defined initializer/rahasia.rb. Here
+     is an example of adapter appropriate for a development environment
+     in config/environments/development.rb:
+
+       config.master_key = 'masterkey' # SecureRandom.hex(32)
+       config.adapter = 'lockbox' # available ['vault','lockbox']
+       config.vault = {host: 'http://localhost', token: 'token'}
+
+     * Required for all applications. *
+
+
+
+===============================================================================
