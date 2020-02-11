@@ -7,7 +7,7 @@ cache:
   directories:
     - /home/travis/.rvm/
 rvm:
-  - 2.4.8
+  - 2.4.5
   - 2.5.3
 script:
   - bundle exec rspec

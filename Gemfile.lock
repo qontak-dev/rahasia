@@ -126,11 +126,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16.2)
+  bundler (< 2)
   rahasia!
   rails (~> 4.2.10)
   rake (~> 10.0)
   rspec (~> 3.0)
 
 BUNDLED WITH
-   1.16.2
+   1.17.3
