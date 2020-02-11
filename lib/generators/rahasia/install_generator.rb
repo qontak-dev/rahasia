@@ -12,13 +12,12 @@ module Rahasia
       source_root File.join(__dir__, '../templates')
 
       def copy_initializer
-        template "rahasia.rb", "config/initializers/rahasia.rb"
+        template 'rahasia.rb', 'config/initializers/rahasia.rb'
       end
 
       def show_readme
-        readme "README" if behavior == :invoke
+        readme 'README' if behavior == :invoke
       end
-
     end
   end
 end
