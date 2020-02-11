@@ -2,13 +2,14 @@ os: linux
 language: ruby
 cache:
   directories:
+    - bundler
     - /home/travis/.rvm/
 rvm:
   - 2.3.8
   - 2.4.5
   - 2.5.3
 script:
-  - gem install bundler
+  - gem install bundler -v 1.16.1
   - bundle install
   - bundle exec rspec
 gemfile:
