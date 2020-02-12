@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+require 'bundler'
+
+Bundler.require :default, :development
+
+require 'sqlite3'
+Combustion.initialize! :active_record,
+                       database_reset: false,
+                       load_schema: true
+require 'rspec/rails'
+
 require 'bundler/setup'
 require 'rahasia'
 
