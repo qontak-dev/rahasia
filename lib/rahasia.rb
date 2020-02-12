@@ -2,7 +2,6 @@
 
 require 'active_support'
 
-require 'pry'
 require 'lockbox'
 require 'vault'
 require 'encryptor'
@@ -32,7 +31,7 @@ module Rahasia
   end
 
   def self.master_key
-    @master_key
+    @master_key || SecureRandom.hex(32)
   end
 
   # Adapter

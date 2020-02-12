@@ -33,11 +33,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport'
   spec.add_dependency 'lockbox', '~> 0.3.1'
   spec.add_dependency 'vault', '~> 0.13.0'
-
-  spec.add_development_dependency 'pry'
-  # spec.add_development_dependency 'rails', '~> 4.2.10'
-  # spec.add_development_dependency 'bundler', '< 2'
-  # spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
-  # # spec.add_development_dependency 'rubocop', '~> 0.79.0'
 end
