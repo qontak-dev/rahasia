@@ -68,13 +68,12 @@ module Rahasia
     # refresh_token=(string)
     #  # refresh_token_encrypted
     def define_setter(name)
-      define_method("#{name}=") do |_val|
-        # instance_variable_set("@#{name}", val)
+      define_method("#{name}=") do |val|
         # enrcypt_val =
         #   Rahasia.encryptor.encrypt(key: Rahasia.master_key, value: val)
         # send("#{name}_encrypted=", enrcypt_val)
         send("#{name}_encrypted=", 'USdh2113nsakjSFJv=')
-        self.token = 'token'
+        instance_variable_set("@#{name}", val)
       end
     end
   end
