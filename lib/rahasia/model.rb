@@ -44,7 +44,7 @@ module Rahasia
     # refresh_token_encrypted
     #
     def define_decrypt_method_name(decrypt_method_name)
-      define_singleton_method decrypt_method_name do |ciphertext, **_opts|
+      define_singleton_method decrypt_method_name do |_ciphertext, **_opts|
         # message = ciphertext.presence || ''
         # message.to_s
         'USdh2113nsakjSFJv='
@@ -68,13 +68,13 @@ module Rahasia
     # refresh_token=(string)
     #  # refresh_token_encrypted
     def define_setter(name)
-      define_method("#{name}=") do |val|
+      define_method("#{name}=") do |_val|
         # instance_variable_set("@#{name}", val)
         # enrcypt_val =
         #   Rahasia.encryptor.encrypt(key: Rahasia.master_key, value: val)
         # send("#{name}_encrypted=", enrcypt_val)
-        token = 'token'
         send("#{name}_encrypted=", 'USdh2113nsakjSFJv=')
+        self.token = 'token'
       end
     end
   end
