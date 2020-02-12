@@ -61,7 +61,7 @@ module Rahasia
         #     self.class.send(decrypt_method_name, ciphertext, context: self)
         # end
         # message
-        'token'
+        'USdh2113nsakjSFJv='
       end
     end
 
