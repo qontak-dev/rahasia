@@ -14,15 +14,16 @@ module Rahasia
         raise ArgumentError, 'Type not supported yet with Mongoid'
       end
 
-      encrypted_attribute = "#{name}_encrypted"
-      decrypt_method_name = "decrypt_#{encrypted_attribute}"
-      define_attributes(attributes, encrypted_attribute, decrypt_method_name)
+      define_attributes(attributes)
     end
 
-    def define_attributes(attributes, _encrypted_attribute, decrypt_method_name)
+    def define_attributes(attributes)
       attributes.each do |name|
+        encrypted_attribute = "#{name}_encrypted"
+        decrypt_method_name = "decrypt_#{encrypted_attribute}"
+
         define_decrypt_method_name(decrypt_method_name)
-        define_decrypt(name)
+        define_decrypt(name, encrypted_attribute, decrypt_method_name)
         define_setter(name)
       end
     end
@@ -42,26 +43,28 @@ module Rahasia
     #   # refresh_token_encrypted
     #
     # refresh_token_encrypted
+    # token_encrypted
     #
     def define_decrypt_method_name(decrypt_method_name)
-      define_singleton_method decrypt_method_name do |_ciphertext, **_opts|
-        # message = ciphertext.presence || ''
-        # message.to_s
-        'USdh2113nsakjSFJv='
+      define_singleton_method decrypt_method_name do |encrypted, **_opts|
+        Rahasia::Adapter::Lockbox.decrypt(
+          key: Rahasia.master_key,
+          value: encrypted
+        )
       end
     end
 
     # refresh_token
-    def define_decrypt(name)
+    # token
+    def define_decrypt(name, encrypted_attribute, decrypt_method_name)
       define_method(name) do
-        # message = super()
-        # unless message
-        #   ciphertext = send(encrypted_attribute)
-        #   message =
-        #     self.class.send(decrypt_method_name, ciphertext, context: self)
-        # end
-        # message
-        'USdh2113nsakjSFJv='
+        message = super()
+        unless message
+          ciphertext = send(encrypted_attribute)
+          message =
+            self.class.send(decrypt_method_name, ciphertext, context: self)
+        end
+        message
       end
     end
 
@@ -69,10 +72,11 @@ module Rahasia
     #  # refresh_token_encrypted
     def define_setter(name)
       define_method("#{name}=") do |val|
-        # enrcypt_val =
-        #   Rahasia.encryptor.encrypt(key: Rahasia.master_key, value: val)
-        # send("#{name}_encrypted=", enrcypt_val)
-        send("#{name}_encrypted=", 'USdh2113nsakjSFJv=')
+        encrypted = Rahasia::Adapter::Lockbox.encrypt(
+          key: Rahasia.master_key,
+          value: val
+        )
+        send("#{name}_encrypted=", encrypted)
         instance_variable_set("@#{name}", val)
       end
     end

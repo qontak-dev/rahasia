@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-# Rahasia::Adapter::Lockbox.encrypt(key: SecureRandom.hex(32), value: 'token')
-# Rahasia::Adapter::Lockbox.decrypt(key: SecureRandom.hex(32), value: t)
 module Rahasia
   module Adapter
     # Adapter lockbox
     class Lockbox
       def self.encrypt(key:, value:)
         lockbox = ::Lockbox.new(key: key)
-        lockbox.encrypt(value)
+        string = lockbox.encrypt(value)
+        Base64.strict_encode64(string)
       end
 
       def self.decrypt(key:, value:)
         lockbox = ::Lockbox.new(key: key)
-        lockbox.decrypt(value)
+        chipertext = Base64.decode64(value)
+        lockbox.decrypt(chipertext)
       end
     end
   end

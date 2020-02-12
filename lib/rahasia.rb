@@ -31,7 +31,8 @@ module Rahasia
   end
 
   def self.master_key
-    @master_key || SecureRandom.hex(32)
+    @master_key ||
+      '0000000000000000000000000000000000000000000000000000000000000000'
   end
 
   # Adapter

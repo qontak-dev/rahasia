@@ -5,7 +5,7 @@ ActiveRecord::Schema.define do
   # in migrations.
   create_table(:credentials, force: true) do |t|
     t.string :token
-    t.string :token_encrypted
+    t.text :token_encrypted
     t.string :name
     t.timestamps null: false
   end

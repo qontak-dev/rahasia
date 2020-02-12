@@ -1,3 +1,9 @@
 test:
-  adapter:  sqlite3
-  database: db/combustion_test.sqlite
+  adapter: postgresql
+  encoding: unicode
+  database: qontak_rahasia_test
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  pool: 25

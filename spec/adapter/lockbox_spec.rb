@@ -13,7 +13,7 @@ RSpec.describe Rahasia::Adapter::Lockbox do
     end
 
     it '#encrypt' do
-      key = SecureRandom.hex(32)
+      key = Rahasia.master_key
       value = 'token'
       encrypt = subject.encryptor.encrypt(key: key, value: value)
       decrypt = subject.encryptor.decrypt(key: key, value: encrypt)
@@ -22,7 +22,7 @@ RSpec.describe Rahasia::Adapter::Lockbox do
     end
 
     it '#decrypt' do
-      key = SecureRandom.hex(32)
+      key = Rahasia.master_key
       value = 'token'
       encrypt = subject.encryptor.encrypt(key: key, value: value)
       decrypt = subject.encryptor.decrypt(key: key, value: encrypt)
