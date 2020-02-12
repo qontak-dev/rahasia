@@ -2,6 +2,7 @@
 
 require 'active_support'
 
+require 'pry'
 require 'lockbox'
 require 'vault'
 require 'encryptor'
