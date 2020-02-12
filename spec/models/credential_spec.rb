@@ -34,5 +34,4 @@ RSpec.describe Credential, type: :model do
 
     allow(credential).to receive(:"token_chipertext?") { true }
   end
-
 end
