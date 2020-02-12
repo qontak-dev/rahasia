@@ -2,5 +2,5 @@
 
 class Credential < ActiveRecord::Base
   include Rahasia
-  enrcypt_column :token, :string
+  enrcypt_column :token, type: :string
 end
