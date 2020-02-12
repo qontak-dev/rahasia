@@ -2,11 +2,11 @@
 
 module Rahasia
   # Model for ActiveRecord extension
+  # https://github.com/ankane/lockbox/blob/80adc597b27172b5e420471db5888b8f962ad829/lib/lockbox/model.rb
   module Model
-    # https://github.com/ankane/lockbox/blob/80adc597b27172b5e420471db5888b8f962ad829/lib/lockbox/model.rb
     def enrcypt_column(*attributes, **options)
       unless [nil, :string].include?(options[:type])
-        raise ArgumentError, "Unknown type: #{options[:type]}. Currently support String"
+        raise ArgumentError, "UnknownType #{options[:type]}."
       end
 
       activerecord = defined?(ActiveRecord::Base) && self < ActiveRecord::Base
@@ -16,7 +16,6 @@ module Rahasia
 
       encrypted_attribute = "#{name}_encrypted"
       decrypt_method_name = "decrypt_#{encrypted_attribute}"
-
       define_attributes(attributes, encrypted_attribute, decrypt_method_name)
     end
 
