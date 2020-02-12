@@ -2,32 +2,34 @@
 
 RSpec.describe Rahasia::Adapter::Lockbox do
   context '.lockbox' do
-    subject { Rahasia }
+    subject(:lockbox) do
+      config = Rahasia
+      config.adapter = 'lockbox'
+      config
+    end
 
     it 'default adapter' do
-      expect(subject.adapter).to be('lockbox')
+      expect(lockbox.adapter).to be('lockbox')
     end
 
     it 'default encryptor' do
-      expect(subject.encryptor).to be(Rahasia::Adapter::Lockbox)
+      expect(lockbox.encryptor).to be(Rahasia::Adapter::Lockbox)
     end
 
     it '#encrypt' do
-      key = Rahasia.master_key
-      value = 'token'
-      encrypt = subject.encryptor.encrypt(key: key, value: value)
-      decrypt = subject.encryptor.decrypt(key: key, value: encrypt)
+      key = lockbox.master_key
+      encrypt = lockbox.encryptor.encrypt(key: key, value: 'token', uuid: nil)
+      decrypt = lockbox.encryptor.decrypt(key: key, value: encrypt, uuid: nil)
 
-      expect(value).to eq(decrypt)
+      expect(decrypt).to eq('token')
     end
 
     it '#decrypt' do
-      key = Rahasia.master_key
-      value = 'token'
-      encrypt = subject.encryptor.encrypt(key: key, value: value)
-      decrypt = subject.encryptor.decrypt(key: key, value: encrypt)
+      key = lockbox.master_key
+      encrypt = lockbox.encryptor.encrypt(key: key, value: 'token', uuid: nil)
+      decrypt = lockbox.encryptor.decrypt(key: key, value: encrypt, uuid: nil)
 
-      expect(value).to eq(decrypt)
+      expect(decrypt).to eq('token')
     end
   end
 end

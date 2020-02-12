@@ -3,5 +3,6 @@
 Rahasia.setup do |config|
   config.master_key = 'please-change-me-at-config-initializers-rahasia' # SecureRandom.hex(32)
   config.adapter = 'lockbox' # available ['vault','lockbox']
-  config.vault = {host: 'http://localhost', token: 'token'}
+  config.vault_app = 'qontak'
+  config.vault = {address: 'http://localhost', ssl_verify: false, token: 'token'}
 end

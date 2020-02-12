@@ -49,7 +49,8 @@ module Rahasia
       define_singleton_method decrypt_method_name do |encrypted, **_opts|
         Rahasia.encryptor.decrypt(
           key: Rahasia.master_key,
-          value: encrypted
+          value: encrypted,
+          uuid: self.class.to_s
         )
       end
     end
@@ -74,8 +75,10 @@ module Rahasia
       define_method("#{name}=") do |val|
         encrypted = Rahasia.encryptor.encrypt(
           key: Rahasia.master_key,
-          value: val
+          value: val,
+          uuid: self.class.to_s
         )
+
         send("#{name}_encrypted=", encrypted)
         instance_variable_set("@#{name}", val)
       end

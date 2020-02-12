@@ -72,6 +72,16 @@ module Rahasia
     @vault
   end
 
+  # VaultApp Name KV Setting
+  mattr_accessor :vault_app
+  def self.vault_app=(vault_app)
+    @vault_app = vault_app
+  end
+
+  def self.vault_app
+    @vault_app
+  end
+
   def self.null_adapter
     'lockbox'
   end
