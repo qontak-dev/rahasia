@@ -24,7 +24,7 @@ module Rahasia
 
         define_decrypt_method_name(decrypt_method_name)
         define_decrypt(name, encrypted_attribute, decrypt_method_name)
-        define_setter(name)
+        define_setter(name, decrypt_method_name)
       end
     end
 
@@ -50,7 +50,7 @@ module Rahasia
         Rahasia.encryptor.decrypt(
           key: Rahasia.master_key,
           value: encrypted,
-          uuid: self.class.to_s
+          uuid: "#{Rahasia.vault_app}_#{decrypt_method_name}"
         )
       end
     end
@@ -71,12 +71,12 @@ module Rahasia
 
     # refresh_token=(string)
     #  # refresh_token_encrypted
-    def define_setter(name)
+    def define_setter(name, decrypt_method_name)
       define_method("#{name}=") do |val|
         encrypted = Rahasia.encryptor.encrypt(
           key: Rahasia.master_key,
           value: val,
-          uuid: self.class.to_s
+          uuid: "#{Rahasia.vault_app}_#{decrypt_method_name}"
         )
 
         send("#{name}_encrypted=", encrypted)

@@ -17,14 +17,14 @@ module Rahasia
       def self.encrypt(key:, value:, uuid: nil)
         client = ::Vault::Client.new(Rahasia.vault)
         vault = client.kv(Rahasia.vault_app)
-        begin
-          Vault.sys.mount(
-            Rahasia.vault_app, 'kv', 'v2 KV',
-            options: { version: '2' }
-          )
-        rescue StandardError
-          print "\nVault mounted!\n"
-        end
+        # begin
+        #   Vault.sys.mount(
+        #     Rahasia.vault_app, 'kv', 'v2 KV',
+        #     options: { version: '2' }
+        #   )
+        # rescue StandardError
+        #   print "Vault mounted!"
+        # end
         uuid = uuid.presence || SecureRandom.hex(4)
         vault.write(uuid, name: value)
       end
@@ -32,14 +32,14 @@ module Rahasia
       def self.decrypt(key:, value:, uuid: nil)
         client = ::Vault::Client.new(Rahasia.vault)
         vault = client.kv(Rahasia.vault_app)
-        begin
-          Vault.sys.mount(
-            Rahasia.vault_app, 'kv', 'v2 KV',
-            options: { version: '2' }
-          )
-        rescue StandardError
-          print "\nVault mounted!\n"
-        end
+        # begin
+        #   Vault.sys.mount(
+        #     Rahasia.vault_app, 'kv', 'v2 KV',
+        #     options: { version: '2' }
+        #   )
+        # rescue StandardError
+        #   print "Vault mounted!"
+        # end
         uuid = uuid.presence || SecureRandom.hex(4)
         vault.read(uuid).data[:name]
       end
