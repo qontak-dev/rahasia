@@ -8,7 +8,7 @@ gem 'combustion', '~> 1.1'
 gem 'pg', '0.20'
 gem 'pry-rails'
 gem 'rails', '4.2.11'
-gem 'sqlite3', '~> 1.3.6'
+gem 'sqlite3', '~> 1.4.2'
 group :test, :development do
   gem 'rspec'
   gem 'rspec-mocks'
