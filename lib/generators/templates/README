@@ -9,6 +9,7 @@ Depending on your application's configuration some manual setup may be required:
        config.master_key = 'masterkey' # SecureRandom.hex(32)
        config.adapter = 'lockbox' # available ['vault','lockbox']
        config.vault = {host: 'http://localhost', token: 'token'}
+       config.vault_app = 'qontak'
 
      * Required for all applications. *
 
