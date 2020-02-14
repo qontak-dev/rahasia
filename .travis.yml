@@ -1,7 +1,7 @@
 os: linux
 language: ruby
-before_install: gem install bundler -v 1.14.4
+before_install:
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v '< 2' || true
 rvm:
   - 2.5.3
-gemfile:
-  - gemfiles/rails_4.gemfile
