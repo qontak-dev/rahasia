@@ -21,9 +21,8 @@ RSpec.describe Rahasia::Adapter::Vault do
     it '#encrypt' do
       key = Rahasia.master_key
       value = 'token'
-      uuid = SecureRandom.hex(4)
-      encrypt = subject.encryptor.encrypt(key: key, value: value, uuid: uuid)
-      decrypt = subject.encryptor.decrypt(key: key, value: encrypt, uuid: uuid)
+      encrypt = subject.encryptor.encrypt(key: key, value: value)
+      decrypt = subject.encryptor.decrypt(key: key, value: encrypt)
 
       expect(value).to eq(decrypt)
     end
@@ -31,9 +30,8 @@ RSpec.describe Rahasia::Adapter::Vault do
     it '#decrypt' do
       key = Rahasia.master_key
       value = 'token'
-      uuid = SecureRandom.hex(4)
-      encrypt = subject.encryptor.encrypt(key: key, value: value, uuid: uuid)
-      decrypt = subject.encryptor.decrypt(key: key, value: encrypt, uuid: uuid)
+      encrypt = subject.encryptor.encrypt(key: key, value: value)
+      decrypt = subject.encryptor.decrypt(key: key, value: encrypt)
 
       expect(value).to eq(decrypt)
     end

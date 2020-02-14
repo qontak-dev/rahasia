@@ -3,8 +3,8 @@
 module Rahasia
   # Adapter encrypt and decrpytor
   class Encrpytor
-    def self.encrypt(key:, value:, uuid:); end
+    def self.encrypt(key:, value:); end
 
-    def self.decrypt(key:, value:, uuid:); end
+    def self.decrypt(key:, value:); end
   end
 end

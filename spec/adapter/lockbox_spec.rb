@@ -18,16 +18,16 @@ RSpec.describe Rahasia::Adapter::Lockbox do
 
     it '#encrypt' do
       key = lockbox.master_key
-      encrypt = lockbox.encryptor.encrypt(key: key, value: 'token', uuid: nil)
-      decrypt = lockbox.encryptor.decrypt(key: key, value: encrypt, uuid: nil)
+      encrypt = lockbox.encryptor.encrypt(key: key, value: 'token')
+      decrypt = lockbox.encryptor.decrypt(key: key, value: encrypt)
 
       expect(decrypt).to eq('token')
     end
 
     it '#decrypt' do
       key = lockbox.master_key
-      encrypt = lockbox.encryptor.encrypt(key: key, value: 'token', uuid: nil)
-      decrypt = lockbox.encryptor.decrypt(key: key, value: encrypt, uuid: nil)
+      encrypt = lockbox.encryptor.encrypt(key: key, value: 'token')
+      decrypt = lockbox.encryptor.decrypt(key: key, value: encrypt)
 
       expect(decrypt).to eq('token')
     end

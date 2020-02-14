@@ -102,7 +102,7 @@ RSpec.describe Credential, type: :model do
         credential = Credential.new(token: 'token')
 
         expect(Rahasia.adapter).to eq('vault')
-        expect(credential.token_encrypted.start_with?("vault:v")).to be true
+        expect(credential.token_encrypted.start_with?('vault:v')).to be true
       end
     end
   end

@@ -49,8 +49,7 @@ module Rahasia
       define_singleton_method decrypt_method_name do |encrypted, **_opts|
         Rahasia.encryptor.decrypt(
           key: Rahasia.master_key,
-          value: encrypted,
-          uuid: "#{Rahasia.vault_app}_#{decrypt_method_name}"
+          value: encrypted
         )
       end
     end
@@ -71,12 +70,11 @@ module Rahasia
 
     # refresh_token=(string)
     #  # refresh_token_encrypted
-    def define_setter(name, decrypt_method_name)
+    def define_setter(name, _decrypt_method_name)
       define_method("#{name}=") do |val|
         encrypted = Rahasia.encryptor.encrypt(
           key: Rahasia.master_key,
-          value: val,
-          uuid: "#{Rahasia.vault_app}_#{decrypt_method_name}"
+          value: val
         )
 
         send("#{name}_encrypted=", encrypted)
