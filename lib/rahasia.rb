@@ -4,6 +4,7 @@ require 'active_support'
 
 require 'lockbox'
 require 'vault'
+require 'vault/transit'
 require 'encryptor'
 require 'adapter/lockbox'
 require 'adapter/vault'
@@ -33,6 +34,21 @@ module Rahasia
   def self.master_key
     @master_key ||
       '0000000000000000000000000000000000000000000000000000000000000000'
+  end
+
+  # Rahasia key
+  mattr_accessor :rahasia_key
+  def self.rahasia_key=(key)
+    @rahasia_key = key
+  end
+
+  def self.rahasia_key
+    @rahasia_key =
+      if Rahasia.adapter == 'vault'
+        Rahasia.vault_app
+      else
+        Rahasia.master_key
+      end
   end
 
   # Adapter
@@ -70,6 +86,16 @@ module Rahasia
 
   def self.vault
     @vault
+  end
+
+  # VaultApp Name KV Setting
+  mattr_accessor :vault_app
+  def self.vault_app=(vault_app)
+    @vault_app = vault_app
+  end
+
+  def self.vault_app
+    @vault_app
   end
 
   def self.null_adapter

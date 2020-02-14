@@ -24,7 +24,7 @@ module Rahasia
 
         define_decrypt_method_name(decrypt_method_name)
         define_decrypt(name, encrypted_attribute, decrypt_method_name)
-        define_setter(name)
+        define_setter(name, decrypt_method_name)
       end
     end
 
@@ -47,8 +47,8 @@ module Rahasia
     #
     def define_decrypt_method_name(decrypt_method_name)
       define_singleton_method decrypt_method_name do |encrypted, **_opts|
-        Rahasia::Adapter::Lockbox.decrypt(
-          key: Rahasia.master_key,
+        Rahasia.encryptor.decrypt(
+          key: Rahasia.rahasia_key,
           value: encrypted
         )
       end
@@ -70,12 +70,13 @@ module Rahasia
 
     # refresh_token=(string)
     #  # refresh_token_encrypted
-    def define_setter(name)
+    def define_setter(name, _decrypt_method_name)
       define_method("#{name}=") do |val|
-        encrypted = Rahasia::Adapter::Lockbox.encrypt(
-          key: Rahasia.master_key,
+        encrypted = Rahasia.encryptor.encrypt(
+          key: Rahasia.rahasia_key,
           value: val
         )
+
         send("#{name}_encrypted=", encrypted)
         instance_variable_set("@#{name}", val)
       end
