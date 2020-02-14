@@ -7,7 +7,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gem 'combustion', '~> 1.1'
 gem 'pg', '0.15'
 gem 'pry-rails'
-gem 'rails', '4.2.11'
+gem 'rails', '6.0.2.1'
 gem 'sqlite3', '~> 1.4.2'
 group :test, :development do
   gem 'rspec'
