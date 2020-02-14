@@ -1,6 +1,6 @@
 class <%= migration_class_name %> < ActiveRecord::Migration<%= migration_version %>
   def change<% attributes_names.each do |t| %>
     add_column :<%=table_name%>, :<%= t %>, :string
-    add_column :<%=table_name%>, :<%= t %>_encrpyted, :text<% end %>
+    add_column :<%=table_name%>, :<%= t %>_encrypted, :text<% end %>
   end
 end

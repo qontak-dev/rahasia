@@ -77,11 +77,51 @@ or for Rails 5 above
 bundle exec rails db:migrate
 ```
 
+## Model
+
+```ruby
+# app/model/credential.rb
+class Credential < ActiveRecord::Base
+  include Rahasia
+  enrcypt_column :token, type: :string
+end
+```
 ## Lockbox
 
+Configuration :
+```ruby
+Rahasia.setup do |config|
+  config.master_key = 'please-change-me-at-config-initializers-rahasia'
+  config.adapter = 'lockbox'
+end
+```
 
+Save encryptrion
+```ruby
+credential = Credential.new(token: 'ThisIsMyToken!')
+credential.save
 
-##
+credential.token # 7GifGwD7+Ls23FX8jyvt5JLWySPGd3300axNyc325sh/
+```
+
+## Vault
+
+```ruby
+Rahasia.setup do |config|
+  config.adapter = 'vault'
+  config.vault_app = 'qontak'
+  config.vault = {address: 'http://localhost', ssl_verify: false, token: 'token'}
+end
+```
+
+Save encryptrion
+```ruby
+credential = Credential.new(token: 'ThisIsMyToken!')
+credential.save
+
+credential.token # vault:v1:ex/xISRe7exDqeHkIPfTeUmGusyVI/szlwRk83wGyLidc9oO+om2fp6a
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
