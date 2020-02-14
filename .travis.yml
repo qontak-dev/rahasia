@@ -5,5 +5,8 @@ before_install:
   - gem install bundler -v '< 2' || true
 rvm:
   - 2.5.3
+script:
+  - gem install bundler -v '< 2'
+  - bundle install
 gemfile:
   - gemfiles/rails_4.gemfile
