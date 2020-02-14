@@ -36,6 +36,21 @@ module Rahasia
       '0000000000000000000000000000000000000000000000000000000000000000'
   end
 
+  # Rahasia key
+  mattr_accessor :rahasia_key
+  def self.rahasia_key=(key)
+    @rahasia_key
+  end
+
+  def self.rahasia_key
+    @rahasia_key =
+      if Rahasia.adapter == 'vault'
+        Rahasia.vault_app
+      else
+        Rahasia.master_key
+      end
+  end
+
   # Adapter
   mattr_accessor :adapter
   def self.adapter=(adapter)
