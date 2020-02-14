@@ -39,7 +39,7 @@ module Rahasia
   # Rahasia key
   mattr_accessor :rahasia_key
   def self.rahasia_key=(key)
-    @rahasia_key
+    @rahasia_key = key
   end
 
   def self.rahasia_key
