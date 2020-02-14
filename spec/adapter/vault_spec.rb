@@ -6,7 +6,11 @@ RSpec.describe Rahasia::Adapter::Vault do
       config = Rahasia
       config.adapter = 'vault'
       config.vault_app = 'cubbyhole'
-      config.vault = { address: 'http://localhost:8200', ssl_verify: false, token: 's.TaWtwLTczBiwd0w36fMkrO8i' }
+      config.vault = {
+        address: 'http://localhost:8200',
+        ssl_verify: false,
+        token: 's.TaWtwLTczBiwd0w36fMkrO8i'
+      }
       config
     end
 
