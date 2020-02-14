@@ -28,6 +28,14 @@ module Rahasia
       end
     end
 
+    def rahasia_key
+      if adapter == 'vault'
+        Rahasia.vault_app
+      else
+        Rahasia.master_key
+      end
+    end
+
     # ------------------------------------
     # available column refresh_token, name
     # ------------------------------------
@@ -48,7 +56,7 @@ module Rahasia
     def define_decrypt_method_name(decrypt_method_name)
       define_singleton_method decrypt_method_name do |encrypted, **_opts|
         Rahasia.encryptor.decrypt(
-          key: Rahasia.master_key,
+          key: rahasia_key,
           value: encrypted
         )
       end
@@ -73,7 +81,7 @@ module Rahasia
     def define_setter(name, _decrypt_method_name)
       define_method("#{name}=") do |val|
         encrypted = Rahasia.encryptor.encrypt(
-          key: Rahasia.master_key,
+          key: rahasia_key,
           value: val
         )
 

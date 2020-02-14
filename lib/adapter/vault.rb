@@ -18,18 +18,18 @@ module Rahasia
         unless ::Vault::Transit.sys.mounts.key? :transit
           ::Vault::Transit.sys.mount('transit', :transit)
         end
-        ::Vault::Transit.logical.write("transit/keys/#{Rahasia.vault_app}")
+        ::Vault::Transit.logical.write("transit/keys/#{key}")
         ::Vault::Transit.enabled = true
-        ::Vault::Transit.encrypt(Rahasia.vault_app, value)
+        ::Vault::Transit.encrypt(key, value)
       end
 
       def self.decrypt(key:, value:)
         unless ::Vault::Transit.sys.mounts.key? :transit
           ::Vault::Transit.sys.mount('transit', :transit)
         end
-        ::Vault::Transit.logical.write("transit/keys/#{Rahasia.vault_app}")
+        ::Vault::Transit.logical.write("transit/keys/#{key}")
         ::Vault::Transit.enabled = true
-        ::Vault::Transit.decrypt(Rahasia.vault_app, value)
+        ::Vault::Transit.decrypt(key, value)
       end
     end
   end
