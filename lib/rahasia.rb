@@ -4,6 +4,7 @@ require 'active_support'
 
 require 'lockbox'
 require 'vault'
+require 'vault/transit'
 require 'encryptor'
 require 'adapter/lockbox'
 require 'adapter/vault'

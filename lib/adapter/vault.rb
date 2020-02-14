@@ -15,33 +15,43 @@ module Rahasia
     # Adapter vault
     class Vault
       def self.encrypt(key:, value:, uuid: nil)
-        client = ::Vault::Client.new(Rahasia.vault)
-        vault = client.kv(Rahasia.vault_app)
-        # begin
-        #   Vault.sys.mount(
-        #     Rahasia.vault_app, 'kv', 'v2 KV',
-        #     options: { version: '2' }
-        #   )
-        # rescue StandardError
-        #   print "Vault mounted!"
-        # end
-        uuid = uuid.presence || SecureRandom.hex(4)
-        vault.write(uuid, name: value)
+        ::Vault::Transit.sys.mount("transit", :transit) unless ::Vault::Transit.sys.mounts.has_key? :transit
+        ::Vault::Transit.logical.write("transit/keys/#{Rahasia.vault_app}")
+        ::Vault::Transit.enabled = true
+        ciphertext = ::Vault::Transit.encrypt(Rahasia.vault_app, value)
+        # client = ::Vault::Client.new(Rahasia.vault)
+        # vault = client.kv(Rahasia.vault_app)
+        # # begin
+        # #   Vault.sys.mount(
+        # #     Rahasia.vault_app, 'kv', 'v2 KV',
+        # #     options: { version: '2' }
+        # #   )
+        # # rescue StandardError
+        # #   print "Vault mounted!"
+        # # end
+        # uuid = uuid.presence || SecureRandom.hex(4)
+        # binding.pry
+        # vault.write('transit/encrypt/credentials', name: value)
+        # vault.write(uuid, name: value)
       end
 
       def self.decrypt(key:, value:, uuid: nil)
-        client = ::Vault::Client.new(Rahasia.vault)
-        vault = client.kv(Rahasia.vault_app)
-        # begin
-        #   Vault.sys.mount(
-        #     Rahasia.vault_app, 'kv', 'v2 KV',
-        #     options: { version: '2' }
-        #   )
-        # rescue StandardError
-        #   print "Vault mounted!"
-        # end
-        uuid = uuid.presence || SecureRandom.hex(4)
-        vault.read(uuid).data[:name]
+        ::Vault::Transit.sys.mount("transit", :transit) unless ::Vault::Transit.sys.mounts.has_key? :transit
+        ::Vault::Transit.logical.write("transit/keys/#{Rahasia.vault_app}")
+        ::Vault::Transit.enabled = true
+        ciphertext = ::Vault::Transit.decrypt(Rahasia.vault_app, value)
+        # client = ::Vault::Client.new(Rahasia.vault)
+        # vault = client.kv(Rahasia.vault_app)
+        # # begin
+        # #   Vault.sys.mount(
+        # #     Rahasia.vault_app, 'kv', 'v2 KV',
+        # #     options: { version: '2' }
+        # #   )
+        # # rescue StandardError
+        # #   print "Vault mounted!"
+        # # end
+        # uuid = uuid.presence || SecureRandom.hex(4)
+        # vault.read(uuid).data[:name]
       end
     end
   end
