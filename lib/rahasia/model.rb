@@ -72,6 +72,7 @@ module Rahasia
     #  # refresh_token_encrypted
     def define_setter(name, _decrypt_method_name)
       define_method("#{name}=") do |val|
+        val = val.presence || ''
         encrypted = Rahasia.encryptor.encrypt(
           key: Rahasia.rahasia_key,
           value: val
