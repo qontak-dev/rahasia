@@ -6,6 +6,8 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 This Gem is wrapper for Lockbox and Vault.
 
+This gem wraps the endpoints for [HashiCorp's Vault Transit secret backend](https://www.vaultproject.io/docs/secrets/transit/). It is dependent upon the [vault gem](https://github.com/hashicorp/vault-ruby). This gem has patterns and code copied from HashiCorp's [vault-ruby gem](https://github.com/hashicorp/vault-rails). Use this gem when you simply want to use the Transit secret backend and you don't need the Rails integration.
+
 TODO: Delete this and the text above, and describe your gem
 
 ## Installation
