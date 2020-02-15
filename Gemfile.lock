@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rahasia (0.0.1.pre.alpha.pre.rc.4)
+    rahasia (0.0.1.pre.alpha.pre.rc.5)
       activesupport
       lockbox (~> 0.3.1)
       vault (~> 0.13.0)
