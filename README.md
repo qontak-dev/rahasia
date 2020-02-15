@@ -101,17 +101,22 @@ Save encryptrion
 credential = Credential.new(token: 'ThisIsMyToken!')
 credential.save
 
-credential.token # 7GifGwD7+Ls23FX8jyvt5JLWySPGd3300axNyc325sh/
+credential.token
+# ThisIsMyToken!
 ```
 
 On the database save
-```
-credential.token
 
+```ruby
+credential.token
 # Actual Record on Database:
 # '--encrypted:29bb68380340aa4be790438e83400c30---'
+
 # Show on irb:
 # ThisIsMyToken!
+
+credential.token_encrypted
+# 7GifGwD7+Ls23FX8jyvt5JLWySPGd3300axNyc325sh/
 ```
 ## Vault
 
@@ -129,16 +134,20 @@ credential = Credential.new(token: 'ThisIsMyToken!')
 credential.save
 
 credential.token
+# ThisIsMyToken!
 ```
 
 On the database save
-```
+```ruby
 credential.token
-
 # Actual Record on Database:
-# 'vault:v1:ex/xISRe7exDqeHkIPfTeUmGusyVI/szlwRk83wGyLidc9oO+om2fp6a'
+# '--encrypted:49bb68380340a23be790438e83400c29---'
 # Show on irb:
 # ThisIsMyToken!
+
+credential.token_encrypted
+# Actual Record on Database:
+# 'vault:v1:ex/xISRe7exDqeHkIPfTeUmGusyVI/szlwRk83wGyLidc9oO+om2fp6a'
 ```
 ## Development
 
