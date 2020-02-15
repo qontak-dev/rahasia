@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/qontak-dev/rahasia.svg?branch=master)](https://travis-ci.org/qontak-dev/rahasia)
 
-`WARNING` this gem is alpha version. Do not use on production.
+`WARNING` this gem is alpha version. Do not use on production. Currently support String type and ActiveRecord.
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rahasia`. To experiment with that code, run `bin/console` for an interactive prompt.
 
@@ -104,6 +104,15 @@ credential.save
 credential.token # 7GifGwD7+Ls23FX8jyvt5JLWySPGd3300axNyc325sh/
 ```
 
+On the database save
+```
+credential.token
+
+# Actual Record on Database:
+# '--encrypted:29bb68380340aa4be790438e83400c30---'
+# Show on irb:
+# ThisIsMyToken!
+```
 ## Vault
 
 ```ruby
@@ -119,9 +128,18 @@ Save encryptrion
 credential = Credential.new(token: 'ThisIsMyToken!')
 credential.save
 
-credential.token # vault:v1:ex/xISRe7exDqeHkIPfTeUmGusyVI/szlwRk83wGyLidc9oO+om2fp6a
+credential.token
 ```
 
+On the database save
+```
+credential.token
+
+# Actual Record on Database:
+# 'vault:v1:ex/xISRe7exDqeHkIPfTeUmGusyVI/szlwRk83wGyLidc9oO+om2fp6a'
+# Show on irb:
+# ThisIsMyToken!
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
