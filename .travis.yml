@@ -7,6 +7,6 @@ rvm:
   - 2.5.3
 script:
   - gem install bundler -v '1.17.3'
-  - bundle _1.17.3_ install --gemfile=gemfiles/rails_4.gemfile
+  - bundle _1.17.3_ install
 gemfile:
   - gemfiles/rails_4.gemfile
