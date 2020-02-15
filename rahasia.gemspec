@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Wrapper encryption gem'
   spec.description   = 'Wrapper encryption gem'
-  spec.homepage      = 'https://github.com/qontak-dev/rahasia.git'
+  spec.homepage      = 'https://github.com/qontak-dev/rahasia'
   spec.license       = 'MIT'
 
   if spec.respond_to?(:metadata)
