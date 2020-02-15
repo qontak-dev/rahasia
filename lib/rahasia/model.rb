@@ -76,19 +76,19 @@ module Rahasia
     #  # refresh_token_encrypted
     def define_setter(name)
       define_method("#{name}=") do |val|
-        super(self.class.default_string)
-        encrypted = Rahasia.encryptor.encrypt(
-          key: Rahasia.rahasia_key,
-          value: (val.presence || '')
-        )
-
-        send("#{name}_encrypted=", encrypted)
-        instance_variable_set("@#{name}", '')
+        begin
+          val = val.presence || ''
+          str = Rahasia.encryptor.encrypt(key: Rahasia.rahasia_key, value: val)
+          send("#{name}_encrypted=", str)
+          super(self.class.default_string)
+        rescue ArgumentError => e
+          puts e
+        end
       end
     end
 
     def not_encrypted?(message)
-      return true if message.nil?
+      return false if message.nil?
 
       message.match(/--encrypted:/) ? true : false
     end
