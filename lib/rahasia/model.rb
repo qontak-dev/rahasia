@@ -17,6 +17,10 @@ module Rahasia
       define_attributes(attributes)
     end
 
+    def default_string
+      "--encrypted:#{SecureRandom.hex(16)}---"
+    end
+
     def define_attributes(attributes)
       attributes.each do |name|
         encrypted_attribute = "#{name}_encrypted"
@@ -24,7 +28,7 @@ module Rahasia
 
         define_decrypt_method_name(decrypt_method_name)
         define_decrypt(name, encrypted_attribute, decrypt_method_name)
-        define_setter(name, decrypt_method_name)
+        define_setter(name)
       end
     end
 
@@ -59,7 +63,7 @@ module Rahasia
     def define_decrypt(name, encrypted_attribute, decrypt_method_name)
       define_method(name) do
         message = super()
-        unless message
+        if self.class.not_encrypted?(message)
           ciphertext = send(encrypted_attribute)
           message =
             self.class.send(decrypt_method_name, ciphertext, context: self)
@@ -70,17 +74,23 @@ module Rahasia
 
     # refresh_token=(string)
     #  # refresh_token_encrypted
-    def define_setter(name, _decrypt_method_name)
+    def define_setter(name)
       define_method("#{name}=") do |val|
-        val = val.presence || ''
+        super(self.class.default_string)
         encrypted = Rahasia.encryptor.encrypt(
           key: Rahasia.rahasia_key,
-          value: val
+          value: (val.presence || '')
         )
 
         send("#{name}_encrypted=", encrypted)
-        instance_variable_set("@#{name}", val)
+        instance_variable_set("@#{name}", '')
       end
+    end
+
+    def not_encrypted?(message)
+      return true if message.nil?
+
+      message.match(/--encrypted:/) ? true : false
     end
   end
 end
