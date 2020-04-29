@@ -45,8 +45,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.4)
-    aws-eventstream (1.0.3)
-    aws-sigv4 (1.1.0)
+    aws-eventstream (1.1.0)
+    aws-sigv4 (1.1.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
     builder (3.2.4)
     coderay (1.1.2)
@@ -141,8 +141,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
-    vault (0.13.0)
-      aws-sigv4
+    vault (0.13.1)
+      aws-sigv4 (= 1.1.1)
     vault-transit (0.1.1)
       vault (~> 0.8)
 
