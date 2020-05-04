@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.3.8'
   spec.add_dependency 'activesupport'
-  spec.add_dependency 'lockbox', '~> 0.3.1'
+  spec.add_dependency 'lockbox', '>= 0.3.1', '< 0.5.0'
   spec.add_dependency 'vault', '~> 0.13.0'
   spec.add_dependency 'vault-transit'
 end
